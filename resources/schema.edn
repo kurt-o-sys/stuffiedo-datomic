@@ -1,0 +1,249 @@
+[
+ ;; feelings
+ {:db/id #db/id[:db.part/db]
+  :db/ident :feeling/type
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc "Idiomatic enum of how the user does feel about something"
+  :db.install/_attribute :db.part/db}
+ 
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/happy}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/sad}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/mad}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/brave}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/embarrased}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/friendly}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/sorry}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/excited}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/horny}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/suspicious}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/left-out}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/silly}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/hopeful}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/disqppointed}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/frustrated}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/surprised}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/hurt}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/shy}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/guilty}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/uncomfortable}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/cranky}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/shy}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/curious}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/proud}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/jealous}
+ {:db/id #db/id[:db.part/feeling] :db/ident :feeling.type/loved}
+ 
+ {:db/id #db/id[:db.part/db]
+  :db/ident :feeling/level
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc "To which extend the user feels something"
+  :db.install/_attribute :db.part/db}
+
+ ;; notes
+ {:db/id #db/id[:db.part/db]
+  :db/ident :note/user
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc "Who wrote the note"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :note/visibility
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "Which contacts can see/follow this note"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :note/on-entity
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc "Note on which entity"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :note/comment
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "Textual comment or note"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :note/feeling
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/many
+  :db/doc "Emotion/feeling associated this note"
+  :db.install/_attribute :db.part/db}
+
+ ;; users
+ {:db/id #db/id[:db.part/db]
+  :db/ident :user/auth0
+  :db/unique :db.unique/identity
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "Auth0 ID of the user"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :user/username
+  :db/unique :db.unique/identity
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "Alternative username of the user (if different from primary auth0 identity) - needed for unique identifier"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :user/namespace
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc "On which server (namespace) is this user - needed for unique identifier"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :user/contact
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/many
+  :db/doc "acquaintances, friends, chums, ... - set level! "
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :user/migrate-to
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc "If user migrates to other namespace"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :user/migrate-from
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc "If user migrated from other namespace"
+  :db.install/_attribute :db.part/db}
+
+ ;; contacts
+ {:db/id #db/id[:db.part/db]
+  :db/ident :contact/ref
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc "whom the contact is"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :contact/level
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "level of contact (friend, acquaintance, ...) - int or distinct levels?"
+  :db.install/_attribute :db.part/db}
+
+ ;; stuffies 
+ {:db/id #db/id[:db.part/db]
+  :db/ident :stuffie/title
+  :db/index true
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "todo title"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :stuffie/description
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "todo description"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :stuffie/stage
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc "Idiomatic enum for stage of stuffie"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/stuff] :db/ident :stuffie.stage/assign-wait}
+ {:db/id #db/id[:db.part/stuff] :db/ident :stuffie.stage/assign-accepted}
+ {:db/id #db/id[:db.part/stuff] :db/ident :stuffie.stage/assign-refused}
+ {:db/id #db/id[:db.part/stuff] :db/ident :stuffie.stage/request-wait}
+ {:db/id #db/id[:db.part/stuff] :db/ident :stuffie.stage/request-accepted}
+ {:db/id #db/id[:db.part/stuff] :db/ident :stuffie.stage/request-refused}
+ {:db/id #db/id[:db.part/stuff] :db/ident :stuffie.stage/logback}
+ {:db/id #db/id[:db.part/stuff] :db/ident :stuffie.stage/on-deck}
+ {:db/id #db/id[:db.part/stuff] :db/ident :stuffie.stage/doing}
+ {:db/id #db/id[:db.part/stuff] :db/ident :stuffie.stage/on-hold}
+ {:db/id #db/id[:db.part/stuff] :db/ident :stuffie.stage/done}
+ {:db/id #db/id[:db.part/stuff] :db/ident :stuffie.stage/dropped}
+ 
+ {:db/id #db/id[:db.part/db]
+  :db/ident :stuffie/owner
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc "The one who made this stuffie"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :stuffie/visibility
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "Which contacts can see/follow this stuffie"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :stuffie/assignee
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc "the one who is assigned to do this stuffie"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :stuffie/parent
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc "nested stuffies: only stuffies with no parent are real ones, others are 'bigstuff' - from parent down: all assignees and owners are participants"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :stuffie/predecessor
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/many
+  :db/doc "chained stuffies: which have to be done before this one can be executed - complete chains can be visualized, but there is no need for owners/assignees to be connected, except that any changes in predecessors should be notified"
+  :db.install/_attribute :db.part/db}
+
+ ;; cluster config
+ {:db/id #db/id[:db.part/db]
+  :db/ident :cluster/namespace
+  :db/unique :db.unique/identity
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "namespace of current cluster"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :cluster/host
+  :db/unique :db.unique/identity
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/many
+  :db/doc "Which hosts share this namespace"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :cluster.host/protocol
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "namespace of current cluster"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :cluster.host/name-or-ip
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "hostname or ip-address"
+  :db.install/_attribute :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :cluster.host/port
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "host port"
+  :db.install/_attribute :db.part/db}
+
+] 

@@ -1,0 +1,19 @@
+[
+ ;;create partitions 
+ {:db/id #db/id[:db.part/db]
+  :db/ident :db.part/stuff
+  :db.install/_partition :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :db.part/cluster
+  :db.install/_partition :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :db.part/user
+  :db.install/_partition :db.part/db}
+
+ {:db/id #db/id[:db.part/db]
+  :db/ident :db.part/feeling
+  :db.install/_partition :db.part/db}
+
+]
