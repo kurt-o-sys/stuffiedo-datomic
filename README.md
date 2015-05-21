@@ -1,20 +1,23 @@
 # datomic-setup
 
-FIXME: description
+Setting up the datomic partitions and scheme by running a (docker-)script.
 
 ## Installation
 
-Download from http://example.com/FIXME.
+-
 
 ## Usage
 
-FIXME: explanation
+    $ docker run simplexsys/stuffiedo-datomic-init --uri "datomic:free://localhost:4334/mydb"
+or
 
-    $ java -jar datomic-setup-0.1.0-standalone.jar [args]
+    $ docker run simplexsys/stuffiedo-datomic-init -u "datomic:free://localhost:4334/mydb"
+    
+Both commands run an init script, adding partitions and schema's to the datomic database given in --uri or -u. 
 
 ## Options
 
-FIXME: listing of options this app accepts.
+--uri or -u
 
 ## Examples
 
